@@ -1,0 +1,14 @@
+Options +ExecCGI
+#AddType text/html cgi
+AddHandler cgi-script rb
+
+DirectoryIndex start.rb
+
+RewriteEngine On
+RewriteBase /
+#RewriteBase  ''
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*) start.rb/$1 [L]
+#RewriteRule ^(.*) start.rb [L]
+
