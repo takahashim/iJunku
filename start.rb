@@ -48,12 +48,7 @@ def format_detail_elem(elem)
   list
 end
 
-get '/' do
-  @title = "iJunku(非公式版)"
-  erb :index
-end
-
-get '' do
+get '/?' do
   @title = "iJunku(非公式版)"
   erb :index
 end
