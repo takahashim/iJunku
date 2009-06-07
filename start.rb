@@ -43,10 +43,10 @@ def format_detail_elem(elem)
   list
 end
 
-#set :run, true   # HTTPサーバを立ち上げないならfalse
-set :run, false
+set :run, true   # HTTPサーバを立ち上げないならfalse
+#set :run, false
 set :environment, :production
-##set :server, "thin"
+set :server, "thin"
 
 get '/' do
   @title = "iJunku(非公式版)"
@@ -158,5 +158,3 @@ get '/isbn' do
 
   erb :search
 end
-
-Rack::Handler::CGI.run Sinatra::Application
