@@ -10,6 +10,12 @@ require 'nokogiri'
 require 'open-uri'
 require 'nkf'
 
+set :run, true  ## for application server, not CGI
+set :environment, :production
+set :server, "thin"
+
+BASE_IMG_URL = "http://www.junkudo.co.jp/"
+
 def format_search_elem(elem)
   e_list = []
   buf = []
@@ -23,7 +29,6 @@ def format_search_elem(elem)
   }
   e_list
 end
-
 
 def format_detail_elem(elem)
   #  html = elem.to_html
@@ -42,13 +47,6 @@ def format_detail_elem(elem)
   }
   list
 end
-
-set :run, true   # HTTPサーバを立ち上げないならfalse
-#set :run, false
-set :environment, :production
-set :server, "thin"
-
-BASE_IMG_URL = "http://www.junkudo.co.jp/"
 
 get '/' do
   @title = "iJunku(非公式版)"
