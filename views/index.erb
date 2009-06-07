@@ -1,0 +1,18 @@
+<span class="graytitle">キーワード検索</span>
+<form action="/search" method="get" >
+<ul class="pageitem">
+  <li class="form"><input name="word" placeholder="必須" type="text" /></li>
+  <li class="form"><input name="search" type="submit" value="検索" /></li>
+</ul>
+</form>
+<span class="graytitle">ISBN検索</span>
+<form action="/isbn" method="get" >
+<ul class="pageitem">
+  <li class="form"><input name="isbn" placeholder="必須" type="text" /></li>
+  <li class="form"><input name="search" type="submit" value="検索" /></li>
+</ul>
+</form>
+
+<ul class="pageitem"> 
+  <li class="form"><input name="link" type="button" value="公式サイトを開く" onclick="window.location = 'http://www.junkudo.co.jp/'; return false;"/></li>
+</ul>

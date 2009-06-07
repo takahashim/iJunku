@@ -1,0 +1,26 @@
+<span class="graytitle">キーワード検索</span>
+<form action="/search" method="get" >
+<ul class="pageitem">
+  <li class="form"><input name="word" placeholder="必須" type="text" value="<%= params[:word] %>"/></li>
+  <li class="form"><input name="search" type="submit" value="検索" /></li>
+</ul>
+</form>
+<span class="graytitle"><%= "#{CGI.escapeHTML(params[:word])}を検索" %></span>
+<ul class="pageitem">
+  <% if @books.length == 0 %>
+  <li>見つかりませんでした</li>
+  <% end %>
+  <% @books.each do |book| %>
+  <li class="store">
+    <a class="noeffect" href="/book/<%= book[:id] %>">
+      <span class="name"><%= book[:title] %></span>
+      <span class="comment"><%= book[:auther_pub]%></span>
+      <span class="starcomment" style="position: relative;top:0;left:0;margin-left:95px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;width: 60%;">棚:<%= book[:shelf] %>／<%= book[:num] %>冊</span>
+      <span class="arrow"></span>
+    </a>
+  </li>
+  <% end %>
+  <% if @next %>
+  <li id="next" class="form"><input name="search" type="submit" value="次の10件を読み込む" onclick="loadNext('search/<%= CGI.escape(params[:word]) %>', <%= @next['href'].gsub(/.*page=(\d+)&.*/, "\\1") %>); return false;" /></li>
+  <% end %>
+</ul>

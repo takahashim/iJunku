@@ -1,0 +1,11 @@
+<span class="graytitle">ISBN検索</span>
+<form action="/isbn" method="get" >
+<ul class="pageitem">
+  <li class="form"><input name="isbn" placeholder="必須" type="text" value="<%= params[:isbn] %>"/></li>
+  <li class="form"><input name="search" type="submit" value="検索" /></li>
+</ul>
+</form>
+<span class="graytitle"><%= "#{CGI.escapeHTML(params[:isbn])}を検索" %></span>
+<ul class="pageitem">
+  <li>見つかりませんでした</li>
+</ul>
