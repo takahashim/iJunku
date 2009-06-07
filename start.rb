@@ -81,7 +81,7 @@ get '/search/:word' do
       bookinfo[:id] = title_elem.attr('href').to_s.sub(/.*ID=/,'')
       list = format_search_elem(elem)
       begin
-        auther_pub = list[1].collect{|elem|  elem.text.gsub(/　/,' ')}
+        author_pub = list[1].collect{|elem|  elem.text.gsub(/　/,' ')}
         other_info = list[2].collect{|elem|  elem.text}.to_s
         other_info += list[3].collect{|elem|  elem.text}.to_s
       rescue
