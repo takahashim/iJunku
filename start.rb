@@ -48,6 +48,8 @@ set :run, true   # HTTPサーバを立ち上げないならfalse
 set :environment, :production
 set :server, "thin"
 
+BASE_IMG_URL = "http://www.junkudo.co.jp/"
+
 get '/' do
   @title = "iJunku(非公式版)"
   erb :index
@@ -81,13 +83,20 @@ get '/search/:word' do
       bookinfo[:id] = title_elem.attr('href').to_s.sub(/.*ID=/,'')
       list = format_search_elem(elem)
       begin
-        author_pub = list[1].collect{|elem|  elem.text.gsub(/　/,' ')}
-        other_info = list[2].collect{|elem|  elem.text}.to_s
-        other_info += list[3].collect{|elem|  elem.text}.to_s
+        author_pub = list[1].collect{|elem2|  elem2.text.gsub(/　/,' ')}
+        other_info = list[2].collect{|elem2|  elem2.text}.to_s
+        other_info += list[3].collect{|elem2|  elem2.text}.to_s
       rescue
       end
       bookinfo[:shelf] = "?"
       bookinfo[:shelf] = ((/書棚は、(.*)です/ =~ other_info) ? $1 : "?")
+
+      ## 画像追加
+      elem.css('img').each do |img_elem|
+        if img_elem.get_attribute('src') =~ /jpg/
+          bookinfo[:image] = BASE_IMG_URL+img_elem.get_attribute('src')
+        end
+      end
 
       ## 怖いので「在庫無し」のときのみ0
       bookinfo[:num] = "?"

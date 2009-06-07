@@ -13,6 +13,9 @@
   <% @books.each do |book| %>
   <li class="store">
     <a class="noeffect" href="/book/<%= book[:id] %>">
+    <% if book[:image] %>
+      <span class="image" style="background: #ccc <%= "url('"+book[:image]+"')" %> center center no-repeat;"></span>
+    <% end %>
       <span class="name"><%= book[:title] %></span>
       <span class="comment"><%= book[:auther_pub]%></span>
       <span class="starcomment" style="position: relative;top:0;left:0;margin-left:95px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;width: 60%;">棚:<%= book[:shelf] %>／<%= book[:num] %>冊</span>
