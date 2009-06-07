@@ -80,22 +80,24 @@ get '/search/:word' do
       bookinfo[:title] = title_elem.text
       bookinfo[:id] = title_elem.attr('href').to_s.sub(/.*ID=/,'')
       list = format_search_elem(elem)
-      l1 = list[1].collect{|elem|  elem.text.gsub(/　/,' ')}
-      l2 = list[2].collect{|elem|  elem.text}
-      l3 = list[3].collect{|elem|  elem.text}
+      begin
+        auther_pub = list[1].collect{|elem|  elem.text.gsub(/　/,' ')}
+        other_info = list[2].collect{|elem|  elem.text}.to_s
+        other_info += list[3].collect{|elem|  elem.text}.to_s
+      rescue
+      end
       bookinfo[:shelf] = "?"
-      s3 = l3.to_s
-      bookinfo[:shelf] = ((/書棚は、(.*)です/ =~ s3) ? $1 : "?")
+      bookinfo[:shelf] = ((/書棚は、(.*)です/ =~ other_info) ? $1 : "?")
 
       ## 怖いので「在庫無し」のときのみ0
       bookinfo[:num] = "?"
-      if /池袋本店(.*)冊/ =~ s3
+      if /池袋本店(.*)冊/ =~ other_info
         bookinfo[:num] = $1
-      elsif /在庫無し/ =~ s3
+      elsif /在庫無し/ =~ other_info
         bookinfo[:num] = 0
       end
 
-      bookinfo[:auther_pub] = l1.to_s
+      bookinfo[:auther_pub] = author_pub.to_s
       bookinfo[:id] ||= "dummy"
       @books << bookinfo
     end
