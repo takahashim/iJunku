@@ -7,6 +7,10 @@ AddHandler cgi-script cgi
 #DirectoryIndex start.rb
 DirectoryIndex dispatch.cgi
 
+<Files start.rb>
+deny from all
+</Files>
+
 RewriteEngine On
 RewriteBase /
 #RewriteBase  ''
