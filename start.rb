@@ -14,6 +14,9 @@ set :run, true  ## for application server, not CGI
 set :environment, :production
 set :server, "thin"
 
+include Rack::Utils
+alias h escape_html
+
 BASE_IMG_URL = "http://www.junkudo.co.jp/"
 
 def format_search_elem(elem)
@@ -159,5 +162,5 @@ get '/isbn' do
     end
   end
 
-  erb :search
+  erb :index
 end
