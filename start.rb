@@ -108,7 +108,9 @@ get '/search/:word' do
 end
 
 get '/book/:id' do
-  @url = "http://www.junkudo.co.jp/detail2.jsp?ID=#{URI.encode(params[:id])}"
+  @id = params[:id]
+  redirect "/" if !@id or @id.empty?
+  @url = "http://www.junkudo.co.jp/detail2.jsp?ID=#{URI.encode(@id)}"
   str = open(@url).read
   doc = Nokogiri::HTML(str,nil,'cp932')
 
