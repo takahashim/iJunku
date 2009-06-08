@@ -50,9 +50,9 @@ get '/?' do
   erb :index
 end
 
-get '/search' do
+get '/search/?' do
   redirect "/search/#{URI.escape(params[:word])}" if params[:word]
-  recirect '/'
+  redirect '/'
 end
 
 ##get '/search/:word/:page' do
