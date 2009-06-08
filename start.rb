@@ -31,13 +31,10 @@ def format_search_elem(elem)
 end
 
 def format_detail_elem(elem)
-  #  html = elem.to_html
+  ## グレーの文字を消す
+  elem.css('font[@color="#777777"]').remove()
   html = elem.text
   list = html.split(/<br>/i)
-  ## グレーの文字を消す
-  list.each{|line|
-    line.gsub!(%r|<font color=['"]?#777777["']?>.*?</font>|ui,'')
-  }
 
   ## タグを全て消す
   list.each{ |line|
