@@ -162,5 +162,6 @@ get '/isbn' do
     end
   end
 
+  @title = "iJunku(非公式版)"
   erb :index
 end
