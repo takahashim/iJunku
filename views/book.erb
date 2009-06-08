@@ -4,10 +4,10 @@
       <p><%= @description %></p>
     </div>
   </li>
-  <li>書棚：<%= @shelf %></li>
-  <li><%= @zaiko %></li>
+  <li>書棚：<%=h @shelf %></li>
+  <li><%=h @zaiko %></li>
 </ul>
 
 <ul class="pageitem"> 
-  <li class="form"><input name="link" type="button" value="ジュンク堂のページを開く" onclick="window.location = '<%= @url %>'; return false;"/></li>
+  <li class="form"><input name="link" type="button" value="ジュンク堂のページを開く" onclick="window.location = '<%=h @url %>'; return false;"/></li>
 </ul>

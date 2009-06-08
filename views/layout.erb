@@ -20,10 +20,10 @@ function loadNext(action, no) {
   </script>
   <title>iJunku(非公式版)</title>
 </head>
-<body class="<%= @body_class %>">
+<body class="<%=h @body_class %>">
   <div id="topbar">
     <% if @leftnav %><div id="leftnav"><%= @leftnav %></div><% end %>
-    <div id="title"><%= @title %></div>
+    <div id="title"><%=h @title %></div>
   </div>
   <div id="content">
     <%= yield %>
