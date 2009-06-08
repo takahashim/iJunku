@@ -143,6 +143,7 @@ end
   
 get '/isbn' do
   @isbn = params[:isbn]
+  redirect "/" if !@isbn or @isbn.empty?
   @url = "http://www.junkudo.co.jp/search2.jsp?VIEW=isbn&ARGS=#{URI.encode(@isbn)}"
   str = open(@url).read
   doc = Nokogiri::HTML(str,nil,'cp932')
