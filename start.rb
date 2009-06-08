@@ -58,6 +58,7 @@ end
 ##get '/search/:word/:page' do
 get '/search/:word' do
   @word = params[:word]
+  redirect "/" if !@word or @word.empty?
   @page = params[:page] || "1"
   @rows = "50"
   word_sjis = NKF::nkf("-Ws",@word)
